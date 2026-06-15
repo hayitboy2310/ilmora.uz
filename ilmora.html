@@ -1,0 +1,681 @@
+<!DOCTYPE html>
+<html lang="uz">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="Ilmora — O'zbekiston va dunyo olimlari maqolalari, tezislari va ilmiy ishlari platformasi. O'zbekcha, ruscha va inglizcha.">
+<meta name="keywords" content="ilmiy maqolalar, iqtisodiyot, tezis, akademik, uzbekistan, ilmora">
+<title>Ilm·ora — Ilmiy Maqolalar Platformasi</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Playfair+Display:wght@700&display=swap" rel="stylesheet">
+<style>
+:root {
+  --blue-900: #042C53;
+  --blue-800: #0C447C;
+  --blue-600: #185FA5;
+  --blue-400: #378ADD;
+  --blue-100: #B5D4F4;
+  --blue-50:  #E6F1FB;
+  --teal-900: #04342C;
+  --teal-600: #0F6E56;
+  --teal-400: #1D9E75;
+  --teal-200: #5DCAA5;
+  --teal-50:  #E1F5EE;
+  --purple-600: #534AB7;
+  --purple-400: #7F77DD;
+  --purple-50:  #EEEDFE;
+  --amber-600: #854F0B;
+  --amber-50:  #FAEEDA;
+  --gray-900: #1a1a2e;
+  --gray-800: #16213e;
+  --gray-700: #0f3460;
+  --text-primary: #0f172a;
+  --text-secondary: #475569;
+  --text-muted: #94a3b8;
+  --bg: #f8fafc;
+  --bg-card: #ffffff;
+  --border: #e2e8f0;
+  --border-hover: #94a3b8;
+  --radius: 12px;
+  --radius-sm: 8px;
+  --shadow: 0 1px 3px rgba(0,0,0,0.06), 0 1px 2px rgba(0,0,0,0.04);
+  --shadow-md: 0 4px 6px rgba(0,0,0,0.07), 0 2px 4px rgba(0,0,0,0.05);
+}
+* { box-sizing: border-box; margin: 0; padding: 0; }
+body { font-family: 'Inter', sans-serif; background: var(--bg); color: var(--text-primary); font-size: 15px; line-height: 1.6; }
+
+/* ── NAV ── */
+nav {
+  position: sticky; top: 0; z-index: 100;
+  background: rgba(255,255,255,0.92);
+  backdrop-filter: blur(12px);
+  border-bottom: 1px solid var(--border);
+  padding: 0 2rem;
+  display: flex; align-items: center; justify-content: space-between;
+  height: 60px;
+}
+.nav-logo { display: flex; align-items: center; gap: 10px; text-decoration: none; }
+.nav-logo svg { flex-shrink: 0; }
+.logo-text { font-family: 'Inter', sans-serif; font-size: 20px; font-weight: 700; letter-spacing: -0.3px; }
+.logo-text .ilm { color: var(--purple-600); }
+.logo-text .sep { color: var(--border-hover); font-weight: 300; margin: 0 1px; }
+.logo-text .ora { color: var(--teal-400); }
+.nav-links { display: flex; align-items: center; gap: 1.5rem; }
+.nav-links a { color: var(--text-secondary); text-decoration: none; font-size: 14px; transition: color .15s; }
+.nav-links a:hover { color: var(--text-primary); }
+.nav-btn { background: var(--blue-600); color: #fff; border: none; padding: 7px 18px; border-radius: var(--radius-sm); font-size: 14px; font-weight: 500; cursor: pointer; transition: background .15s; }
+.nav-btn:hover { background: var(--blue-800); }
+
+/* ── HERO ── */
+.hero {
+  background: linear-gradient(135deg, var(--gray-900) 0%, var(--gray-700) 50%, #1a3a5c 100%);
+  padding: 4rem 2rem 3rem;
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+}
+.hero::before {
+  content: '';
+  position: absolute; inset: 0;
+  background: radial-gradient(ellipse at 30% 50%, rgba(127,119,221,0.15) 0%, transparent 60%),
+              radial-gradient(ellipse at 70% 50%, rgba(29,158,117,0.12) 0%, transparent 60%);
+}
+.hero-inner { position: relative; max-width: 680px; margin: 0 auto; }
+.hero-badge { display: inline-flex; align-items: center; gap: 6px; background: rgba(255,255,255,0.1); border: 1px solid rgba(255,255,255,0.15); color: #e2e8f0; font-size: 12px; padding: 4px 12px; border-radius: 20px; margin-bottom: 1.5rem; letter-spacing: 0.3px; }
+.hero h1 { font-family: 'Playfair Display', serif; font-size: clamp(32px, 5vw, 52px); color: #fff; line-height: 1.15; margin-bottom: 1rem; }
+.hero h1 span { color: var(--teal-200); }
+.hero p { color: #94a3b8; font-size: 16px; margin-bottom: 2rem; line-height: 1.7; }
+
+/* search bar */
+.search-wrap { display: flex; gap: 8px; background: rgba(255,255,255,0.08); border: 1px solid rgba(255,255,255,0.15); border-radius: var(--radius); padding: 6px; backdrop-filter: blur(8px); }
+.search-wrap input { flex: 1; background: transparent; border: none; outline: none; color: #fff; font-size: 15px; padding: 6px 10px; font-family: 'Inter', sans-serif; }
+.search-wrap input::placeholder { color: rgba(255,255,255,0.4); }
+.search-wrap select { background: rgba(255,255,255,0.12); border: 1px solid rgba(255,255,255,0.15); color: #fff; border-radius: var(--radius-sm); padding: 6px 10px; font-size: 13px; outline: none; cursor: pointer; }
+.search-wrap select option { background: var(--gray-800); color: #fff; }
+.search-btn { background: var(--teal-400); color: #fff; border: none; padding: 8px 22px; border-radius: var(--radius-sm); font-size: 14px; font-weight: 500; cursor: pointer; white-space: nowrap; transition: background .15s; }
+.search-btn:hover { background: var(--teal-600); }
+
+/* hero stats */
+.hero-stats { display: flex; justify-content: center; gap: 3rem; margin-top: 2.5rem; }
+.hstat { text-align: center; }
+.hstat .num { font-size: 24px; font-weight: 700; color: #fff; }
+.hstat .lbl { font-size: 12px; color: rgba(255,255,255,0.5); margin-top: 2px; letter-spacing: 0.3px; }
+
+/* ── MAIN LAYOUT ── */
+.container { max-width: 1200px; margin: 0 auto; padding: 2rem; }
+.layout { display: grid; grid-template-columns: 240px 1fr; gap: 1.5rem; align-items: start; }
+
+/* ── SIDEBAR ── */
+.sidebar { position: sticky; top: 76px; }
+.filter-box { background: var(--bg-card); border: 1px solid var(--border); border-radius: var(--radius); padding: 1.25rem; margin-bottom: 1rem; }
+.filter-title { font-size: 11px; font-weight: 600; color: var(--text-muted); text-transform: uppercase; letter-spacing: 1px; margin-bottom: 0.875rem; }
+.tag-cloud { display: flex; flex-wrap: wrap; gap: 6px; }
+.tag { padding: 4px 11px; border-radius: 20px; font-size: 12px; border: 1px solid var(--border); background: none; color: var(--text-secondary); cursor: pointer; transition: all .15s; font-family: 'Inter', sans-serif; }
+.tag:hover { border-color: var(--blue-400); color: var(--blue-600); }
+.tag.active { background: var(--blue-50); color: var(--blue-600); border-color: var(--blue-100); font-weight: 500; }
+.lang-list { display: flex; flex-direction: column; gap: 4px; }
+.lang-item { display: flex; align-items: center; gap: 8px; padding: 7px 10px; border-radius: var(--radius-sm); cursor: pointer; font-size: 13px; color: var(--text-secondary); transition: background .15s; border: 1px solid transparent; }
+.lang-item:hover { background: var(--bg); }
+.lang-item.active { background: var(--teal-50); color: var(--teal-600); border-color: rgba(29,158,117,0.2); font-weight: 500; }
+.lang-dot { width: 8px; height: 8px; border-radius: 50%; flex-shrink: 0; }
+.dot-uz { background: var(--teal-400); }
+.dot-ru { background: var(--blue-400); }
+.dot-en { background: var(--purple-400); }
+.dot-all { background: var(--text-muted); }
+.type-list { display: flex; flex-direction: column; gap: 4px; }
+.type-item { display: flex; align-items: center; justify-content: space-between; padding: 7px 10px; border-radius: var(--radius-sm); cursor: pointer; font-size: 13px; color: var(--text-secondary); transition: background .15s; border: 1px solid transparent; }
+.type-item:hover { background: var(--bg); }
+.type-item.active { background: var(--purple-50); color: var(--purple-600); border-color: rgba(127,119,221,0.2); font-weight: 500; }
+.type-count { font-size: 11px; background: var(--bg); padding: 1px 7px; border-radius: 10px; color: var(--text-muted); }
+
+/* ── ARTICLES ── */
+.articles-header { display: flex; align-items: center; justify-content: space-between; margin-bottom: 1rem; }
+.result-count { font-size: 14px; color: var(--text-secondary); }
+.result-count strong { color: var(--text-primary); }
+.sort-row { display: flex; align-items: center; gap: 8px; }
+.sort-label { font-size: 12px; color: var(--text-muted); }
+.sort-sel { font-size: 13px; padding: 5px 10px; border-radius: var(--radius-sm); border: 1px solid var(--border); background: var(--bg-card); color: var(--text-primary); outline: none; cursor: pointer; font-family: 'Inter', sans-serif; }
+
+.tabs { display: flex; gap: 4px; margin-bottom: 1.25rem; border-bottom: 1px solid var(--border); padding-bottom: 0; }
+.tab { padding: 8px 16px; font-size: 13px; border: none; background: none; cursor: pointer; color: var(--text-muted); font-family: 'Inter', sans-serif; border-bottom: 2px solid transparent; margin-bottom: -1px; transition: all .15s; }
+.tab.active { color: var(--blue-600); border-bottom-color: var(--blue-600); font-weight: 500; }
+.tab:hover:not(.active) { color: var(--text-primary); }
+
+/* ── ARTICLE CARD ── */
+.article-card {
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 1.25rem 1.5rem;
+  margin-bottom: 0.875rem;
+  transition: box-shadow .2s, border-color .2s;
+  cursor: pointer;
+}
+.article-card:hover { box-shadow: var(--shadow-md); border-color: var(--border-hover); }
+.card-top { display: flex; justify-content: space-between; gap: 12px; margin-bottom: 0.5rem; }
+.article-title { font-size: 15px; font-weight: 600; color: var(--text-primary); line-height: 1.45; flex: 1; }
+.bookmark { background: none; border: none; cursor: pointer; color: var(--text-muted); font-size: 20px; padding: 0; line-height: 1; flex-shrink: 0; transition: color .15s; }
+.bookmark:hover { color: var(--blue-600); }
+.bookmark.saved { color: var(--blue-600); }
+.badges { display: flex; flex-wrap: wrap; gap: 5px; margin-bottom: 0.625rem; }
+.badge { padding: 2px 9px; border-radius: 12px; font-size: 11px; font-weight: 500; }
+.b-field { background: var(--blue-50); color: var(--blue-800); }
+.b-uz { background: var(--teal-50); color: var(--teal-600); }
+.b-ru { background: var(--blue-50); color: var(--blue-600); }
+.b-en { background: var(--purple-50); color: var(--purple-600); }
+.b-open { background: #e8f5e9; color: #2e7d32; }
+.b-year { background: var(--amber-50); color: var(--amber-600); }
+.b-world { background: #fce4ec; color: #c2185b; }
+.abstract { font-size: 13px; color: var(--text-secondary); line-height: 1.65; margin-bottom: 0.75rem; display: -webkit-box; -webkit-line-clamp: 3; -webkit-box-orient: vertical; overflow: hidden; }
+.card-footer { display: flex; align-items: center; justify-content: space-between; }
+.author { font-size: 12px; color: var(--text-muted); display: flex; align-items: center; gap: 5px; }
+.author-avatar { width: 20px; height: 20px; border-radius: 50%; background: linear-gradient(135deg, var(--purple-400), var(--blue-400)); display: inline-flex; align-items: center; justify-content: center; font-size: 9px; color: #fff; font-weight: 600; }
+.card-btns { display: flex; gap: 6px; }
+.cbtn { padding: 5px 12px; font-size: 12px; border-radius: var(--radius-sm); border: 1px solid var(--border); background: var(--bg); cursor: pointer; color: var(--text-secondary); font-family: 'Inter', sans-serif; transition: all .15s; }
+.cbtn:hover { border-color: var(--blue-400); color: var(--blue-600); }
+.cbtn.pdf { background: var(--blue-600); color: #fff; border-color: var(--blue-600); font-weight: 500; }
+.cbtn.pdf:hover { background: var(--blue-800); }
+
+/* ── ATOM LOGO ── */
+.atom-icon { display: inline-block; }
+
+/* ── MODAL ── */
+.modal-backdrop {
+  display: none;
+  position: fixed; inset: 0; z-index: 200;
+  background: rgba(15,23,42,0.6);
+  backdrop-filter: blur(4px);
+  align-items: center; justify-content: center;
+  padding: 1rem;
+}
+.modal-backdrop.open { display: flex; }
+.modal {
+  background: var(--bg-card);
+  border-radius: var(--radius);
+  width: 100%; max-width: 680px;
+  max-height: 85vh;
+  overflow-y: auto;
+  box-shadow: 0 20px 60px rgba(0,0,0,0.2);
+  padding: 2rem;
+  position: relative;
+}
+.modal-close { position: absolute; top: 1.25rem; right: 1.25rem; background: none; border: none; font-size: 22px; cursor: pointer; color: var(--text-muted); line-height: 1; }
+.modal-close:hover { color: var(--text-primary); }
+.modal h2 { font-size: 18px; font-weight: 600; margin-bottom: 0.75rem; padding-right: 2rem; line-height: 1.4; }
+.modal-meta { display: flex; flex-wrap: wrap; gap: 5px; margin-bottom: 1.25rem; }
+.modal-section { margin-bottom: 1.25rem; }
+.modal-section h3 { font-size: 12px; font-weight: 600; color: var(--text-muted); text-transform: uppercase; letter-spacing: 0.8px; margin-bottom: 0.5rem; }
+.modal-section p { font-size: 14px; color: var(--text-secondary); line-height: 1.7; }
+.modal-actions { display: flex; gap: 8px; flex-wrap: wrap; padding-top: 1rem; border-top: 1px solid var(--border); }
+.mabtn { padding: 8px 18px; border-radius: var(--radius-sm); font-size: 14px; font-weight: 500; cursor: pointer; border: 1px solid var(--border); background: var(--bg); color: var(--text-primary); font-family: 'Inter', sans-serif; transition: all .15s; }
+.mabtn:hover { background: var(--bg); border-color: var(--border-hover); }
+.mabtn.primary { background: var(--blue-600); color: #fff; border-color: var(--blue-600); }
+.mabtn.primary:hover { background: var(--blue-800); }
+
+/* annotation box */
+.anno-box { background: var(--teal-50); border: 1px solid rgba(29,158,117,0.2); border-radius: var(--radius-sm); padding: 1rem; margin-bottom: 1rem; }
+.anno-box p { font-size: 13px; color: var(--teal-600); line-height: 1.65; font-style: italic; }
+.anno-author { font-size: 11px; color: var(--teal-400); margin-top: 6px; font-style: normal; font-weight: 500; }
+textarea.anno-input { width: 100%; border: 1px solid var(--border); border-radius: var(--radius-sm); padding: 10px; font-size: 13px; font-family: 'Inter', sans-serif; resize: vertical; min-height: 80px; outline: none; color: var(--text-primary); transition: border-color .15s; }
+textarea.anno-input:focus { border-color: var(--teal-400); }
+
+/* ── EMPTY STATE ── */
+.empty { text-align: center; padding: 4rem 2rem; color: var(--text-muted); }
+.empty svg { margin-bottom: 1rem; opacity: 0.3; }
+.empty p { font-size: 15px; }
+
+/* ── FOOTER ── */
+footer { border-top: 1px solid var(--border); padding: 2rem; text-align: center; margin-top: 2rem; }
+footer p { font-size: 12px; color: var(--text-muted); }
+footer a { color: var(--blue-600); text-decoration: none; }
+
+/* ── SCROLLBAR ── */
+::-webkit-scrollbar { width: 6px; }
+::-webkit-scrollbar-track { background: transparent; }
+::-webkit-scrollbar-thumb { background: var(--border); border-radius: 3px; }
+
+/* ── TOAST ── */
+.toast { position: fixed; bottom: 1.5rem; right: 1.5rem; background: var(--gray-900); color: #fff; padding: 10px 18px; border-radius: var(--radius-sm); font-size: 13px; z-index: 300; transform: translateY(100px); opacity: 0; transition: all .25s; pointer-events: none; }
+.toast.show { transform: translateY(0); opacity: 1; }
+
+@media (max-width: 768px) {
+  .layout { grid-template-columns: 1fr; }
+  .sidebar { position: static; }
+  .hero-stats { gap: 1.5rem; }
+  .search-wrap { flex-direction: column; }
+  nav { padding: 0 1rem; }
+  .nav-links { display: none; }
+  .container { padding: 1rem; }
+}
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <a href="#" class="nav-logo">
+    <!-- Atom logo -->
+    <svg class="atom-icon" width="32" height="32" viewBox="0 0 32 32" xmlns="http://www.w3.org/2000/svg">
+      <ellipse cx="16" cy="16" rx="14" ry="6" fill="none" stroke="#534AB7" stroke-width="1.6" opacity="0.75"/>
+      <ellipse cx="16" cy="16" rx="14" ry="6" fill="none" stroke="#185FA5" stroke-width="1.6" opacity="0.75" transform="rotate(60 16 16)"/>
+      <ellipse cx="16" cy="16" rx="14" ry="6" fill="none" stroke="#1D9E75" stroke-width="1.6" opacity="0.75" transform="rotate(120 16 16)"/>
+      <circle cx="16" cy="16" r="4" fill="url(#ng1)"/>
+      <circle cx="16" cy="16" r="2" fill="#fff"/>
+      <circle cx="30" cy="16" r="2.5" fill="#534AB7"/>
+      <circle cx="9" cy="5.5" r="2.5" fill="#185FA5"/>
+      <circle cx="9" cy="26.5" r="2.5" fill="#1D9E75"/>
+      <defs>
+        <linearGradient id="ng1" x1="0" y1="0" x2="1" y2="1">
+          <stop offset="0%" stop-color="#534AB7"/>
+          <stop offset="100%" stop-color="#1D9E75"/>
+        </linearGradient>
+      </defs>
+    </svg>
+    <span class="logo-text"><span class="ilm">ilm</span><span class="sep">·</span><span class="ora">ora</span></span>
+  </a>
+  <div class="nav-links">
+    <a href="#">Bosh sahifa</a>
+    <a href="#">Katalog</a>
+    <a href="#">Yo'nalishlar</a>
+    <a href="#">Haqida</a>
+  </div>
+  <button class="nav-btn" onclick="showToast('Tez orada ishga tushadi!')">Kirish</button>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-inner">
+    <div class="hero-badge">
+      <svg width="12" height="12" viewBox="0 0 12 12"><circle cx="6" cy="6" r="4" fill="#1D9E75"/></svg>
+      Ochiq kirish · O'zbekistonning birinchi ilmiy platformasi
+    </div>
+    <h1>Ilmiy bilim — <span>hamma uchun</span> ochiq</h1>
+    <p>Iqtisodiyot va boshqa fanlar bo'yicha dunyo va O'zbekiston olimlarining maqolalari, tezislari — o'zbekcha, ruscha va inglizcha.</p>
+    <div class="search-wrap">
+      <input type="text" id="searchInput" placeholder="Mavzu, muallif yoki kalit so'z..." oninput="filterArticles()">
+      <select id="langFilter" onchange="filterArticles()">
+        <option value="all">Barcha tillar</option>
+        <option value="uz">O'zbekcha</option>
+        <option value="ru">Русский</option>
+        <option value="en">English</option>
+      </select>
+      <button class="search-btn" onclick="filterArticles()">Qidirish</button>
+    </div>
+    <div class="hero-stats">
+      <div class="hstat"><div class="num" id="statArticles">47</div><div class="lbl">Maqolalar</div></div>
+      <div class="hstat"><div class="num">3</div><div class="lbl">Til</div></div>
+      <div class="hstat"><div class="num">8</div><div class="lbl">Yo'nalish</div></div>
+      <div class="hstat"><div class="num">12</div><div class="lbl">Dunyo olimlari</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- MAIN -->
+<div class="container">
+  <div class="layout">
+
+    <!-- SIDEBAR -->
+    <aside class="sidebar">
+      <div class="filter-box">
+        <div class="filter-title">Yo'nalish</div>
+        <div class="tag-cloud" id="fieldTags">
+          <button class="tag active" onclick="setField(this,'all')">Barcha</button>
+          <button class="tag" onclick="setField(this,'macro')">Makroiqtisodiyot</button>
+          <button class="tag" onclick="setField(this,'micro')">Mikroiqtisodiyot</button>
+          <button class="tag" onclick="setField(this,'finance')">Moliya</button>
+          <button class="tag" onclick="setField(this,'econometrics')">Ekonometrika</button>
+          <button class="tag" onclick="setField(this,'labor')">Mehnat bozori</button>
+          <button class="tag" onclick="setField(this,'trade')">Xalqaro savdo</button>
+          <button class="tag" onclick="setField(this,'development')">Rivojlanish</button>
+          <button class="tag" onclick="setField(this,'policy')">Iqtisodiy siyosat</button>
+        </div>
+      </div>
+
+      <div class="filter-box">
+        <div class="filter-title">Til</div>
+        <div class="lang-list">
+          <div class="lang-item active" onclick="setLang(this,'all')"><span class="lang-dot dot-all"></span> Barcha tillar</div>
+          <div class="lang-item" onclick="setLang(this,'uz')"><span class="lang-dot dot-uz"></span> O'zbekcha</div>
+          <div class="lang-item" onclick="setLang(this,'ru')"><span class="lang-dot dot-ru"></span> Русский</div>
+          <div class="lang-item" onclick="setLang(this,'en')"><span class="lang-dot dot-en"></span> English</div>
+        </div>
+      </div>
+
+      <div class="filter-box">
+        <div class="filter-title">Tur</div>
+        <div class="type-list">
+          <div class="type-item active" onclick="setType(this,'all')">Barchasi <span class="type-count">47</span></div>
+          <div class="type-item" onclick="setType(this,'article')">Maqola <span class="type-count">31</span></div>
+          <div class="type-item" onclick="setType(this,'thesis')">Tezis <span class="type-count">11</span></div>
+          <div class="type-item" onclick="setType(this,'report')">Hisobot <span class="type-count">5</span></div>
+        </div>
+      </div>
+
+      <div class="filter-box">
+        <div class="filter-title">Yil</div>
+        <div class="type-list">
+          <div class="type-item active" onclick="setYear(this,'all')">Barcha yillar</div>
+          <div class="type-item" onclick="setYear(this,'2022-2026')">2022–2026</div>
+          <div class="type-item" onclick="setYear(this,'2017-2021')">2017–2021</div>
+          <div class="type-item" onclick="setYear(this,'2010-2016')">2010–2016</div>
+        </div>
+      </div>
+    </aside>
+
+    <!-- ARTICLES -->
+    <main>
+      <div class="tabs">
+        <button class="tab active" onclick="setTab(this,'all')">Barcha maqolalar</button>
+        <button class="tab" onclick="setTab(this,'saved')">Saqlangan ⭐</button>
+        <button class="tab" onclick="setTab(this,'world')">Dunyo olimlari 🌍</button>
+      </div>
+
+      <div class="articles-header">
+        <div class="result-count"><strong id="countDisplay">47</strong> ta natija</div>
+        <div class="sort-row">
+          <span class="sort-label">Saralash:</span>
+          <select class="sort-sel" onchange="sortArticles(this.value)">
+            <option value="new">Yangi avval</option>
+            <option value="old">Eski avval</option>
+            <option value="popular">Mashhurlik</option>
+          </select>
+        </div>
+      </div>
+
+      <div id="articleList"></div>
+      <div class="empty" id="emptyState" style="display:none">
+        <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg>
+        <p>Hech narsa topilmadi.<br>Boshqa kalit so'z yoki filtr sinab ko'ring.</p>
+      </div>
+    </main>
+  </div>
+</div>
+
+<footer>
+  <p>© 2025 <strong>Ilm·ora</strong> — O'zbekistonning ochiq ilmiy platformasi &nbsp;·&nbsp; <a href="#">Aloqa</a> &nbsp;·&nbsp; <a href="#">Maqola taklif qilish</a></p>
+</footer>
+
+<!-- MODAL -->
+<div class="modal-backdrop" id="modal" onclick="closeModalBackdrop(event)">
+  <div class="modal" id="modalContent">
+    <button class="modal-close" onclick="closeModal()">×</button>
+    <div id="modalBody"></div>
+  </div>
+</div>
+
+<!-- TOAST -->
+<div class="toast" id="toast"></div>
+
+<script>
+const articles = [
+  {
+    id:1, lang:'uz', field:'macro', type:'article', year:2024,
+    title:"O'zbekistonda iqtisodiy o'sish va inflyatsiya: VECM tahlili (2000–2023)",
+    authors:"A. Karimov, B. Yusupov", org:"TDIU",
+    abstract:"Ushbu maqolada 2000–2023 yillar davomida O'zbekistonda YaIM o'sish sur'ati va iste'mol narxlari indeksi o'rtasidagi miqdoriy aloqadorlik vektoral xatolikni tuzatish modeli (VECM) yordamida tadqiq etilgan. Natijalar qisqa muddatda Filips egri chizig'i o'rinli ekanligini ko'rsatmoqda.",
+    annotation:"Maqola O'zbekistondagi makroiqtisodiy barqarorlik masalasini ekonometrik usulda o'rganadi. VECM modeli orqali YaIM va inflyatsiya o'rtasidagi uzoq muddatli va qisqa muddatli bog'liqlik aniqlangan.",
+    field_label:"Makroiqtisodiyot", world:false, views:234
+  },
+  {
+    id:2, lang:'en', field:'labor', type:'article', year:2023,
+    title:"Labor Market Dynamics in Transition Economies: Evidence from Central Asia",
+    authors:"M. Nazarov, S. Tashmatov", org:"World Bank",
+    abstract:"This paper examines employment and wage dynamics across Central Asian transition economies using panel data from 2005–2022. We find significant heterogeneity in labor market institutions and their impact on unemployment rates and real wage growth across the region.",
+    annotation:"The paper provides robust econometric evidence on how institutional differences across Central Asian states — particularly Uzbekistan and Kazakhstan — shape labor market outcomes, with implications for reform design.",
+    field_label:"Mehnat bozori", world:true, views:891
+  },
+  {
+    id:3, lang:'ru', field:'trade', type:'article', year:2022,
+    title:"Влияние прямых иностранных инвестиций на экономический рост Узбекистана",
+    authors:"И. Рашидов", org:"ИЭИ АН РУз",
+    abstract:"В данной статье анализируется взаимосвязь между притоком прямых иностранных инвестиций и темпами экономического роста в Узбекистане за период 2000–2021 годов с использованием модели VAR. Результаты показывают положительный долгосрочный эффект ПИИ.",
+    annotation:"Maqolada VAR modeli orqali to'g'ridan-to'g'ri xorijiy investitsiyalar va iqtisodiy o'sish o'rtasidagi munosabat o'rganilgan. Natijalar ijobiy uzoq muddatli ta'sirni ko'rsatmoqda.",
+    field_label:"Xalqaro savdo", world:false, views:412
+  },
+  {
+    id:4, lang:'en', field:'econometrics', type:'article', year:2021,
+    title:"Mostly Harmless Econometrics: An Empiricist's Companion",
+    authors:"Joshua Angrist, Jörn-Steffen Pischke", org:"MIT, LSE",
+    abstract:"This landmark text introduces core methods in applied econometrics — regression, instrumental variables, differences-in-differences, and regression discontinuity — with emphasis on causal inference and real-world empirical applications.",
+    annotation:"Amaliy ekonometrikaning eng mashhur qo'llanmalaridan biri. Sabab-oqibat tahlil usullari — IV, DD, RD — juda tushunarli tarzda yoritilgan. Har bir talaba uchun majburiy o'qish.",
+    field_label:"Ekonometrika", world:true, views:5420
+  },
+  {
+    id:5, lang:'en', field:'development', type:'article', year:2021,
+    title:"Why Nations Fail: Inclusive vs Extractive Institutions",
+    authors:"Daron Acemoglu, James A. Robinson", org:"MIT, University of Chicago",
+    abstract:"This influential work argues that the fundamental cause of differences in prosperity across nations is human-made political and economic institutions. Countries with inclusive institutions sustain long-run growth, while extractive institutions lead to stagnation.",
+    annotation:"Iqtisodiy rivojlanish nazariyasidagi eng ta'sirchan asarlardan biri. Acemoglu va Robinson 'inklyuziv' va 'ekstraktiv' institutlar tushunchasini kiritib, mamlakatlar boyligi farqini tushuntiradi. Nobel mukofoti sohibi.",
+    field_label:"Rivojlanish", world:true, views:12800
+  },
+  {
+    id:6, lang:'uz', field:'finance', type:'thesis', year:2023,
+    title:"O'zbekiston bank sektorida kredit riski va kapital yetarliligi",
+    authors:"N. Hasanova", org:"BMA (Bank-Moliya Akademiyasi)",
+    abstract:"Dissertatsiyada O'zbekiston tijorat banklarida kredit riskini boshqarish samaradorligi va Bazel III talablari asosida kapital yetarliligi ko'rsatkichlari baholangan. 2018–2022 yillar panel ma'lumotlari tahlil qilingan.",
+    annotation:"Amaliy jihatan muhim tezis — bank sektoridagi kredit riskini miqdoriy baholaydi va Bazel III standartlari bilan taqqoslaydi. Moliya yo'nalishi talabalari uchun foydali.",
+    field_label:"Moliya", world:false, views:178
+  },
+  {
+    id:7, lang:'en', field:'macro', type:'article', year:2019,
+    title:"Fiscal Multipliers: New Evidence from a Large Panel of Countries",
+    authors:"Ethan Ilzetzki, Enrique Mendoza, Carlos Végh", org:"LSE, Maryland, Johns Hopkins",
+    abstract:"We provide new evidence on fiscal multipliers using a novel quarterly dataset for 44 countries. We find that the size of the multiplier depends crucially on the exchange rate regime, level of development, and degree of trade openness.",
+    annotation:"Fiskal multiplikator bo'yicha muhim empirik maqola. 44 mamlakat ma'lumotlari asosida davlat xarajatlarining YaIMga ta'siri turli sharoitlarda baholanadi. Makroiqtisodiy siyosat tahlili uchun zarur.",
+    field_label:"Makroiqtisodiyot", world:true, views:3210
+  },
+  {
+    id:8, lang:'ru', field:'policy', type:'report', year:2024,
+    title:"Цифровая экономика в Центральной Азии: вызовы и возможности",
+    authors:"К. Абдуллаев, М. Юсупова", org:"UNDP Узбекистан",
+    abstract:"В докладе рассматриваются ключевые тенденции цифровой трансформации в странах Центральной Азии, включая анализ инфраструктуры, регуляторной среды и перспектив развития цифровой экономики до 2030 года.",
+    annotation:"UNDP hisoboti Markaziy Osiyodagi raqamli iqtisodiyot rivojlanishini tahlil qiladi. Infrastruktura, me'yoriy-huquqiy muhit va 2030 yilgacha bo'lgan istiqbollar ko'rib chiqilgan.",
+    field_label:"Iqtisodiy siyosat", world:false, views:567
+  },
+  {
+    id:9, lang:'en', field:'micro', type:'article', year:2020,
+    title:"Market Power and Competition: Evidence from Uzbekistan's Retail Sector",
+    authors:"F. Tursunov, G. Mirzaeva", org:"Westminster International University Tashkent",
+    abstract:"Using firm-level data from 2015–2019, this paper estimates market concentration and price-cost margins in Uzbekistan's retail sector following liberalization reforms. We find evidence of declining market power and improved allocative efficiency.",
+    annotation:"O'zbekiston chakana savdo sektorida raqobat va bozor kuchi baholanadi. Erkinlashtirish islohotlari samarasini ko'rsatuvchi muhim empirik tadqiqot.",
+    field_label:"Mikroiqtisodiyot", world:false, views:289
+  },
+  {
+    id:10, lang:'en', field:'development', type:'article', year:2022,
+    title:"The Rise and Decline of Nations: Economic Growth, Stagflation, and Social Rigidities",
+    authors:"Mancur Olson", org:"University of Maryland",
+    abstract:"Olson's seminal work explains differences in economic growth rates across nations through the lens of collective action and distributional coalitions. Special interest groups accumulate over time, reducing economic efficiency and slowing growth.",
+    annotation:"Mancur Olson millat taraqqiyoti va turg'unlikni kollektiv harakat nazariyasi orqali tushuntiradi. Iqtisodiy o'sish sohasidagi klassik asarlardan biri — siyosiy iqtisodiyot tadqiqotchilari uchun muhim.",
+    field_label:"Rivojlanish", world:true, views:4100
+  },
+  {
+    id:11, lang:'uz', field:'econometrics', type:'thesis', year:2024,
+    title:"STATA yordamida O'zbekiston qishloq xo'jaligida hosildorlik omillari tahlili",
+    authors:"D. Ergashev", org:"Toshkent Agrar Universiteti",
+    abstract:"Magistrlik dissertatsiyasida O'zbekiston viloyatlari kesimida qishloq xo'jaligi hosildorligiga ta'sir etuvchi omillar panel ma'lumotlar asosida STATA dasturida tahlil qilingan. Dehqon xo'jaliklari 2015–2023 yillar ma'lumotlari ishlatilgan.",
+    annotation:"Amaliy ekonometrika usullarini qishloq xo'jaligiga tatbiq etgan foydali dissertatsiya. STATA da panel regression, FE va RE modellari ishlatilgan — o'rganish uchun qulay misol.",
+    field_label:"Ekonometrika", world:false, views:134
+  },
+  {
+    id:12, lang:'en', field:'finance', type:'article', year:2023,
+    title:"Cryptocurrency Adoption and Financial Inclusion in Emerging Markets",
+    authors:"A. Berger, K. Li", org:"IMF Research Department",
+    abstract:"This paper examines the relationship between cryptocurrency adoption and financial inclusion across 54 emerging market economies. Using novel survey data, we find that crypto serves as a complement rather than substitute for traditional banking in underbanked populations.",
+    annotation:"Rivojlanayotgan mamlakatlarda kriptovalyuta va moliyaviy inklyuziya munosabatini o'rganuvchi dolzarb maqola. IMF ma'lumotlari asosida 54 mamlakat tahlil qilingan.",
+    field_label:"Moliya", world:true, views:2890
+  }
+];
+
+let savedIds = new Set();
+let currentFilters = { field:'all', lang:'all', type:'all', year:'all', tab:'all', search:'' };
+let currentArticles = [...articles];
+
+function renderArticles(list) {
+  const el = document.getElementById('articleList');
+  const empty = document.getElementById('emptyState');
+  document.getElementById('countDisplay').textContent = list.length;
+  if(!list.length){ el.innerHTML=''; empty.style.display='block'; return; }
+  empty.style.display='none';
+  el.innerHTML = list.map(a => `
+    <div class="article-card" onclick="openModal(${a.id})">
+      <div class="card-top">
+        <div class="article-title">${a.title}</div>
+        <button class="bookmark ${savedIds.has(a.id)?'saved':''}" onclick="toggleSave(event,${a.id})" title="Saqlash">
+          ${savedIds.has(a.id)?'⭐':'☆'}
+        </button>
+      </div>
+      <div class="badges">
+        <span class="badge b-field">${a.field_label}</span>
+        <span class="badge b-${a.lang}">${a.lang==='uz'?"O'zbekcha":a.lang==='ru'?'Русский':'English'}</span>
+        <span class="badge b-open">Ochiq kirish</span>
+        <span class="badge b-year">${a.year}</span>
+        ${a.world?'<span class="badge b-world">🌍 Dunyo olimi</span>':''}
+      </div>
+      <div class="abstract">${a.abstract}</div>
+      <div class="card-footer">
+        <div class="author">
+          <span class="author-avatar">${a.authors.split(',')[0].trim().split(' ').map(w=>w[0]).join('').slice(0,2)}</span>
+          ${a.authors} — ${a.org}
+        </div>
+        <div class="card-btns">
+          <button class="cbtn" onclick="event.stopPropagation();openModal(${a.id})">Annotatsiya</button>
+          <button class="cbtn pdf" onclick="event.stopPropagation();showToast('PDF tez orada qo\\'shiladi!')">↗ PDF</button>
+        </div>
+      </div>
+    </div>
+  `).join('');
+}
+
+function applyFilters() {
+  let list = articles.filter(a => {
+    const q = currentFilters.search.toLowerCase();
+    const matchSearch = !q || a.title.toLowerCase().includes(q) || a.authors.toLowerCase().includes(q) || a.abstract.toLowerCase().includes(q);
+    const matchField  = currentFilters.field === 'all' || a.field === currentFilters.field;
+    const matchLang   = currentFilters.lang  === 'all' || a.lang  === currentFilters.lang;
+    const matchType   = currentFilters.type  === 'all' || a.type  === currentFilters.type;
+    const matchTab    = currentFilters.tab   === 'all' || (currentFilters.tab==='saved'&&savedIds.has(a.id)) || (currentFilters.tab==='world'&&a.world);
+    let matchYear = true;
+    if(currentFilters.year !== 'all') {
+      const [y1,y2] = currentFilters.year.split('-').map(Number);
+      matchYear = a.year >= y1 && a.year <= y2;
+    }
+    return matchSearch && matchField && matchLang && matchType && matchTab && matchYear;
+  });
+  renderArticles(list);
+}
+
+function filterArticles() {
+  currentFilters.search = document.getElementById('searchInput').value;
+  currentFilters.lang   = document.getElementById('langFilter').value;
+  applyFilters();
+}
+function setField(el, val) {
+  document.querySelectorAll('#fieldTags .tag').forEach(t=>t.classList.remove('active'));
+  el.classList.add('active');
+  currentFilters.field = val;
+  applyFilters();
+}
+function setLang(el, val) {
+  document.querySelectorAll('.lang-item').forEach(t=>t.classList.remove('active'));
+  el.classList.add('active');
+  currentFilters.lang = val;
+  document.getElementById('langFilter').value = val;
+  applyFilters();
+}
+function setType(el, val) {
+  document.querySelectorAll('.type-item').forEach(t=>t.classList.remove('active'));
+  el.classList.add('active');
+  currentFilters.type = val;
+  applyFilters();
+}
+function setYear(el, val) {
+  document.querySelectorAll('.filter-box:last-child .type-item').forEach(t=>t.classList.remove('active'));
+  el.classList.add('active');
+  currentFilters.year = val;
+  applyFilters();
+}
+function setTab(el, val) {
+  document.querySelectorAll('.tab').forEach(t=>t.classList.remove('active'));
+  el.classList.add('active');
+  currentFilters.tab = val;
+  applyFilters();
+}
+function sortArticles(val) {
+  if(val==='new') articles.sort((a,b)=>b.year-a.year);
+  else if(val==='old') articles.sort((a,b)=>a.year-b.year);
+  else if(val==='popular') articles.sort((a,b)=>b.views-a.views);
+  applyFilters();
+}
+function toggleSave(e, id) {
+  e.stopPropagation();
+  if(savedIds.has(id)) { savedIds.delete(id); showToast('Saqlanganlardan olib tashlandi'); }
+  else { savedIds.add(id); showToast('⭐ Saqlandi!'); }
+  applyFilters();
+}
+
+function openModal(id) {
+  const a = articles.find(x=>x.id===id);
+  if(!a) return;
+  const langLabel = a.lang==='uz'?"O'zbekcha":a.lang==='ru'?'Русский':'English';
+  document.getElementById('modalBody').innerHTML = `
+    <h2>${a.title}</h2>
+    <div class="modal-meta">
+      <span class="badge b-field">${a.field_label}</span>
+      <span class="badge b-${a.lang}">${langLabel}</span>
+      <span class="badge b-open">Ochiq kirish</span>
+      <span class="badge b-year">${a.year}</span>
+      ${a.world?'<span class="badge b-world">🌍 Dunyo olimi</span>':''}
+    </div>
+    <div class="modal-section">
+      <h3>Muallif(lar)</h3>
+      <p>${a.authors} — <em>${a.org}</em></p>
+    </div>
+    <div class="modal-section">
+      <h3>Qisqacha mazmun (abstract)</h3>
+      <p>${a.abstract}</p>
+    </div>
+    <div class="modal-section">
+      <h3>O'zbekcha annotatsiya</h3>
+      <div class="anno-box">
+        <p>${a.annotation}</p>
+        <div class="anno-author">✍ Ilmora jamoasi tomonidan</div>
+      </div>
+    </div>
+    <div class="modal-section">
+      <h3>O'z annotatsiyangizni yozing</h3>
+      <textarea class="anno-input" id="userAnno" placeholder="Bu maqola haqida fikringizni yozing..."></textarea>
+    </div>
+    <div class="modal-actions">
+      <button class="mabtn primary" onclick="showToast('PDF tez orada qo\\'shiladi!')">↗ PDF ko'rish</button>
+      <button class="mabtn" onclick="saveAnno(${a.id})">✓ Annotatsiya saqlash</button>
+      <button class="mabtn" onclick="toggleSaveModal(${a.id})">${savedIds.has(a.id)?'⭐ Saqlangan':'☆ Saqlash'}</button>
+      <button class="mabtn" onclick="showToast('Havola nusxalandi!')">⎘ Ulashish</button>
+    </div>
+  `;
+  document.getElementById('modal').classList.add('open');
+}
+function closeModal() { document.getElementById('modal').classList.remove('open'); }
+function closeModalBackdrop(e) { if(e.target.id==='modal') closeModal(); }
+function saveAnno(id) {
+  const v = document.getElementById('userAnno').value.trim();
+  if(!v){ showToast('Annotatsiya bo\'sh!'); return; }
+  showToast('✓ Annotatsiyangiz saqlandi!');
+}
+function toggleSaveModal(id) {
+  if(savedIds.has(id)) { savedIds.delete(id); showToast('Olib tashlandi'); }
+  else { savedIds.add(id); showToast('⭐ Saqlandi!'); }
+  applyFilters();
+}
+
+function showToast(msg) {
+  const t = document.getElementById('toast');
+  t.textContent = msg;
+  t.classList.add('show');
+  setTimeout(()=>t.classList.remove('show'), 2500);
+}
+
+document.addEventListener('keydown', e=>{ if(e.key==='Escape') closeModal(); });
+applyFilters();
+</script>
+</body>
+</html>
